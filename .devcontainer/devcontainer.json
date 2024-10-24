@@ -1,0 +1,14 @@
+{
+  "name": "Angular Spring Boot MySQL",
+  "dockerFile": "Dockerfile",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint"
+  ],
+  "postCreateCommand": "npm install -g @angular/cli",
+  "forwardPorts": [4200, 8080],
+  "remoteUser": "vscode"
+}
