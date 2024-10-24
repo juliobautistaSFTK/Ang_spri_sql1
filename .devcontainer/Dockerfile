@@ -14,8 +14,8 @@ RUN apt-get update && apt-get install -y \
     echo "mysql-server mysql-server/root_password password Canada" | debconf-set-selections && \
     echo "mysql-server mysql-server/root_password_again password Canada" | debconf-set-selections && \
     echo "mysql-server mysql-server/skip-preseed boolean true" | debconf-set-selections && \
-    echo "tzdata tzdata/Areas select Etc" | debconf-set-selections && \
-    echo "tzdata tzdata/Zones/Etc select UTC" | debconf-set-selections && \
+    echo "tzdata tzdata/Areas select America" | debconf-set-selections && \
+    echo "tzdata tzdata/Zones/America select Toronto" | debconf-set-selections && \
     # Instalar MySQL
     apt-get install -y mysql-server && \
     # Limpiar caché de apt
