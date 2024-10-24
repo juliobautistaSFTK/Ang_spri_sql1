@@ -1,27 +1,23 @@
 {
-  "name": "Angular + Spring Boot + MySQL",
-  "image": "mcr.microsoft.com/vscode/devcontainers/java:11",
+  "name": "MySQL Dev Container",
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:latest",
   "features": {
-    "docker-in-docker": "latest",
-    "node": "lts",
-    "mysql": "latest"
+    "mysql": {
+      "version": "latest",
+      "db": "mibase1",
+      "user": "root",
+      "password": "Canada",
+      "rootPassword": "Canada"
+    }
   },
   "settings": {
-    "java.home": "/usr/lib/jvm/java-11-openjdk",
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "mysql.defaultConnection": {
+      "host": "localhost",
+      "user": "root",
+      "password": "Canada",
+      "database": "mibase1"
+    }
   },
-  "extensions": [
-    "ms-azuretools.vscode-docker",
-    "redhat.java",
-    "esbenp.prettier-vscode",
-    "angular.ng-template",
-    "vscjava.vscode-spring-boot",
-    "vscjava.vscode-spring-initializr"
-  ],
-  "forwardPorts": [4200, 8080, 3306],
-  "postCreateCommand": [
-    "npm install --prefix ./frontend",
-    "./mvnw install -DskipTests --prefix ./backend"
-  ],
-  "remoteUser": "vscode"
+  "forwardPorts": [3306],
+  "postCreateCommand": "echo 'MySQL está configurado con la base de datos mibase1 y el usuario root con contraseña Canada.'"
 }
