@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     # Configurar el repositorio de MySQL
     wget -qO - https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb | dpkg -i - && \
     # Configurar la zona horaria automáticamente
-    echo "mysql-community-server mysql-community-server/data-dir select '' | debconf-set-selections && \
+    echo "mysql-community-server mysql-community-server/data-dir select '2' | debconf-set-selections && \
     echo "mysql-community-server mysql-community-server/zone select UTC | debconf-set-selections && \
     # Instalar MySQL
     apt-get update && apt-get install -y mysql-server && \
