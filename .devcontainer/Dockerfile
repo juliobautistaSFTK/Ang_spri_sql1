@@ -14,8 +14,9 @@ RUN apt-get update && apt-get install -y \
     echo "mysql-server mysql-server/root_password password Canada" | debconf-set-selections && \
     echo "mysql-server mysql-server/root_password_again password Canada" | debconf-set-selections && \
     echo "mysql-server mysql-server/skip-preseed boolean true" | debconf-set-selections && \
-    echo "tzdata tzdata/Areas select America" | debconf-set-selections && \
-    echo "tzdata tzdata/Zones/America select Mexico_City" | debconf-set-selections && \
+    # Establecer la zona horaria a Ciudad de México
+    ln -sf /usr/share/zoneinfo/America/Mexico_City /etc/localtime && \
+    echo "America/Mexico_City" > /etc/timezone && \
     # Instalar MySQL
     apt-get install -y mysql-server && \
     # Limpiar caché de apt
