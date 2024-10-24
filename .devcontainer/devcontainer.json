@@ -1,14 +1,27 @@
 {
-  "name": "Angular Spring Boot MySQL",
-  "dockerFile": "Dockerfile",
+  "name": "Angular + Spring Boot + MySQL",
+  "image": "mcr.microsoft.com/vscode/devcontainers/java:11",
+  "features": {
+    "docker-in-docker": "latest",
+    "node": "lts",
+    "mysql": "latest"
+  },
   "settings": {
-    "terminal.integrated.shell.linux": "/bin/bash"
+    "java.home": "/usr/lib/jvm/java-11-openjdk",
+    "java.configuration.updateBuildConfiguration": "automatic"
   },
   "extensions": [
+    "ms-azuretools.vscode-docker",
+    "redhat.java",
     "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint"
+    "angular.ng-template",
+    "vscjava.vscode-spring-boot",
+    "vscjava.vscode-spring-initializr"
   ],
-  "postCreateCommand": "npm install -g @angular/cli",
-  "forwardPorts": [4200, 8080],
+  "forwardPorts": [4200, 8080, 3306],
+  "postCreateCommand": [
+    "npm install --prefix ./frontend",
+    "./mvnw install -DskipTests --prefix ./backend"
+  ],
   "remoteUser": "vscode"
 }
