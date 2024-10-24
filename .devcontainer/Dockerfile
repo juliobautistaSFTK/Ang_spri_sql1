@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     # Preconfigurar la zona horaria y MySQL para evitar preguntas interactivas
     echo "mysql-server mysql-server/root_password password Canada" | debconf-set-selections && \
     echo "mysql-server mysql-server/root_password_again password Canada" | debconf-set-selections && \
+    echo "mysql-server mysql-server/skip-preseed boolean true" | debconf-set-selections && \
     echo "tzdata tzdata/Areas select Etc" | debconf-set-selections && \
     echo "tzdata tzdata/Zones/Etc select UTC" | debconf-set-selections && \
     # Instalar MySQL
@@ -22,9 +23,9 @@ RUN apt-get update && apt-get install -y \
 
 # Iniciar el servicio MySQL y crear la base de datos
 RUN service mysql start && \
-    mysql -e "CREATE DATABASE mibase1;" && \
-    mysql -e "GRANT ALL PRIVILEGES ON mibase1.* TO 'root'@'localhost';" && \
-    mysql -e "FLUSH PRIVILEGES;"
+    mysql -u root -pCanada -e "CREATE DATABASE mibase1;" && \
+    mysql -u root -pCanada -e "GRANT ALL PRIVILEGES ON mibase1.* TO 'root'@'localhost';" && \
+    mysql -u root -pCanada -e "FLUSH PRIVILEGES;"
 
 # Exponer los puertos
 EXPOSE 80 3306
