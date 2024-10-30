@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Descripción</title>
+</head>
+<body>
+    <h1>Consulta de Descripción</h1>
+    <label for="clave">Ingrese la clave:</label>
+    <input type="number" id="clave" />
+    <button onclick="consultarDescripcion()">Consultar</button>
+    
+    <h2>Descripción:</h2>
+    <p id="descripcion"></p>
+
+    <script>
+        async function consultarDescripcion() {
+            const clave = document.getElementById('clave').value;
+            const response = await fetch(`/distancia/${clave}`);
+            const data = await response.json();
+            document.getElementById('descripcion').innerText = data ? data.descripcion : 'No se encontró la descripción';
+        }
+    </script>
+</body>
+</html>
